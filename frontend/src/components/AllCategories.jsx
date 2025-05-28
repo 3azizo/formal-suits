@@ -12,6 +12,7 @@ import trousers from "../assets/categoriesIcon/trousers.png";
 // import diamond from "../assets/categoriesIcon/diamond.png";
 // import hijab from "../assets/categoriesIcon/hijab.png";
 import socks from "../assets/categoriesIcon/socks.png";
+import rent from "../assets/categoriesIcon/rent.png"
 
 import { Link } from 'react-router-dom';
 
@@ -24,6 +25,7 @@ const AllCategories = () => {
     { name: 'أحزمة', icon: belt, path: '/categories/أحزمة' },
     { name: 'بناطيل', icon: trousers, path: '/categories/بناطيل' },
     { name: 'شرابات', icon: socks, path: '/categories/شرابات' },
+    { name: 'تاجير', icon: rent, path: '/categories/تاجير' },
   ];
 
   return (

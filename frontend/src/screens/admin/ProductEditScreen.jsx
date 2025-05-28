@@ -36,14 +36,19 @@ const ProductEditScreen = () => {
 
   const [updateProduct, { isLoading: loadingUpdate }] =
     useUpdateProductMutation();
-
-  const [uploadProductImage, { isLoading: loadingUpload }] =
+    const [uploadProductImage, { isLoading: loadingUpload }] =
     useUploadProductImageMutation();
 
   const navigate = useNavigate();
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (!image) {
+      toast.error('يرجى رفع صورة للمنتج.');
+      return;
+    }
+    console.log('إرسال المنتج مع الصورة:', image); // ✅ طباعة الرابط للتحقق
+
     try {
       await updateProduct({
         productId,
@@ -89,6 +94,7 @@ const ProductEditScreen = () => {
       toast.error(err?.data?.message || err.error);
     }
   };
+  
 
   // المقاسات المتاحة للاختيار
   const availableSizes =category=="ملابس" ?['S', 'M', 'L', 'XL', 'XXL',"XXXL"]:['26', '28', '30', '32', '34', '36', '38', '40', '42', '44', '46', '48', '50', '52', '54'];

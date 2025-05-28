@@ -40,7 +40,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav' className='larg-m'>
             <Nav className='ms-auto'>
-              <SearchBox />
+              
               <Nav.Link as={Link} to='/cart'>
                 <FaShoppingCart /> المشتريات
                 {cartItems.length > 0 && (
@@ -68,8 +68,10 @@ const Header = () => {
                   <NavDropdown.Item as={Link} to='/categories/بناطيل'>
                   بناطيل
                   </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to='/categories/تاجير'>
+                  تاجير
+                  </NavDropdown.Item>
                  
-                  
                   
                   <NavDropdown.Item as={Link} to='/categories/شرابات	'>
                   شرابات                  
@@ -106,6 +108,7 @@ const Header = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
               )}
+              <SearchBox />
                
             </Nav>
           </Navbar.Collapse>

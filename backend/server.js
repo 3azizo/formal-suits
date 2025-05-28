@@ -2,6 +2,8 @@ import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+
 dotenv.config();
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
@@ -9,13 +11,15 @@ import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+
 // import compression from './compression';
 // app.use(compression());
-const port = process.env.PORT || 5000;
+
 
 connectDB();
 
 const app = express();
+app.use(cors()); // ✅ حل مشكلة CORS إذا كانت موجودة
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -48,7 +52,11 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(notFound);
 app.use(errorHandler);
+const port = process.env.PORT || 5000;
+app.listen(port, () =>{
+   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`)
+  console.log('🔍 التحقق من Cloudinary API Key:', process.env.CLOUDINARY_API_KEY ? 'تم تحميله ✅' : '❌ لم يتم تحميله');
 
-app.listen(port, () =>
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`)
+}
+ 
 );
